@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="title">Boutique de Chaussure</h2>
+<div class="article row">
+    {% for product in products %}
+    <div class="col-md-3 containt_base">
+        <a href="{{ product.get_absolute_url}}" class="containt_article arcticle_link">
+            <h3>{{ product.name }}</h3>
+            <img src="{{ product.thumbnail.url }}" alt="{{ product.name }} image">
+            <!-- <a href="{% url 'product' product.slug %}" class="a_noStyle"> -->
+            <a href="{{ product.get_absolute_url}}" class="a_noStyle hide_link">Voir l'article</a>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

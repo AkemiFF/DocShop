@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container panier">
+
+    <h1>Panier</h1>
+    <div class="cart">
+        {% for order in orders %}
+        <div class="containt_article containt_base col-md-3">
+            <h4>{{ order.product.name }}</h4>
+            <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.name }} image">
+            <p>{{ order.quantity }} dans le panier</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="link-bottom">
+        <a href="{% url 'delete_cart' %}">Supprimer la Panier</a>
+        <a href="{% url 'index' %}">Revenir en arrière</a>
+    </div>
+</div>
+
+{% endblock content %}

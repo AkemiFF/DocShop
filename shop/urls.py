@@ -16,7 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+
+from accounts.views import singup, logout_user, login_user
+from shop import settings
+
+from store.views import index, product_detail, add_to_cart, cart, delete_cart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('singup/', singup, name="singup"),
+    path('cart/', cart, name="cart"),
+    path('delete/', delete_cart, name="delete_cart"),
+    path('login/', login_user, name="login"),
+    path('logout/', logout_user, name="logout"),
+    path('', index, name='index'),
+    path('product/<str:slug>/',  product_detail, name='product'),
+    path('product/<str:slug>/add_to_cart/',  add_to_cart, name='add_to_cart'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='detail container'>
+    <h2>{{ product.name }}</h2>
+    <h4>{{ product.price }}$</h4>
+    <img src="{{ product.thumbnail.url }}" alt="{{ product.name }} image">
+    <p>{{ product.description }}</p>
+    <p>{{ product.stock }} en stock</p>
+    {% if user.is_authenticated %}
+    <div class="link-bottom">
+        <a href="{% url 'add_to_cart' product.slug %}">Ajouter au Panier</a>
+        {% endif %}
+        <a href="{% url 'index' %}">Revenir en arrière</a>
+    </div>
+</div>
+{% endblock content %}
